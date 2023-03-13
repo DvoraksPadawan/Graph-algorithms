@@ -29,14 +29,14 @@ def menu(g):
 		print()
 	print('','Co mám udělat?','[1] Generovat nový graf','[2] Zneorientovat graf','[3] Vypsat konponenty souvislosti','[4] Najít nejkratší cestu','[5] Přidat vrchol','[6] Přidat hranu',sep='\n')
 
-def DFS(v, nodes):
+def make_DFS(v, nodes):
 	global state
 	print('%2d'%v,end=' ')
 	state[v] = 1
 	u = nodes[v]
 	while u != None:
 		if state[u.index] == 0:
-			DFS(u.index,nodes)
+			make_DFS(u.index,nodes)
 		u = u.next
 
 def find_components(nodes):
@@ -45,7 +45,7 @@ def find_components(nodes):
 	print('komponenty po radcich:')
 	for i in range(len(nodes)):
 		if state[i] == 0:
-			DFS(i, nodes)
+			make_DFS(i, nodes)
 			print()
 
 def add_into_graph(v0,u,edge_weight,make_symetric = False):
